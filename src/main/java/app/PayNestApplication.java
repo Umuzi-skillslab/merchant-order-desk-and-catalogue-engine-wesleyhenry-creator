@@ -3,7 +3,7 @@ package app;
 import domain.Customer;
 import domain.Order;
 import domain.Product;
-import payment.PayJustNowPayment;
+import payment.CardPayment;
 import payment.PaymentMethod;
 
 public class PayNestApplication {
@@ -27,7 +27,7 @@ public class PayNestApplication {
 
         order.printSummary();
 
-        PaymentMethod paymentMethod = new PayJustNowPayment();
+        PaymentMethod paymentMethod = new CardPayment();
         order.checkout(paymentMethod);
 
     }

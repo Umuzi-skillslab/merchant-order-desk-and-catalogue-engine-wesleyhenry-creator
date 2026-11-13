@@ -56,7 +56,6 @@ JUnit 5 tests cover core behavior, including:
 
 ## Project structure
 
-```text
 src/
 ├── main/
 │   └── java/
@@ -81,10 +80,12 @@ src/
     └── java/
         ├── domain/
         │   ├── OrderTest.java
-        │   └── PaymentMethodTest.java
         └── service/
             └── OrderServiceTest.java
-```
+             └── payment/
+            └── PaymentMethodTest.java
+
+
 
 ## Tech stack
 
@@ -101,55 +102,55 @@ src/
 
 ### 1. Clone the repository
 
-```bash
-git clone <repository-url>
-cd merchant-order-desk-and-catalogue-engine-wesleyhenry-creator
-```
+## Running the Project
 
-### 2. Compile the project
+The project uses Java 21 and Maven.
 
-```bash
+Compile the project:
+
+bash
 mvn clean compile
-```
 
-### 3. Run the application
 
-```bash
+Run all tests:
+
+bash
+mvn clean test
+
+
+Run the demonstration application:
+
+bash
 mvn exec:java
-```
+Or
+mvn exec:java -Dexec.mainClass=app.PayNestApplication
 
-You can also run the main class directly from your IDE:
 
-```java
-app.PayNestApplication
-```
+## Expected Demo
 
-## Running tests
+The application builds an order containing a laptop, two mice, and five headphones. The order total is R19900. The selected payment method receives that calculated total and processes it through the common `PaymentMethod` interface.
 
-```bash
-mvn test
-```
 
 ## Example output
 
-```text
-================================
-PAYNEST ORDER SUMMARY
-================================
+Example output:
 
+Order summary
+========================
 Customer: Wesley Henry
 Email: wesleyhenry@umuzi.org
-
---------------------------------
-
-Laptop         x1     R12000.00
-Mouse          x2     R400.00
-Headphones     x5     R7500.00
-
---------------------------------
-Grand Total: R19900.00
-================================
-```
+========================
+Order ID: 1
+Items:
+ - Laptop | x1 | R12000
+ - Mouse | x2 | R400
+ - Headphones | x5 | R7500
+========================
+Total: R19900
+========================
+Processing card payment for R19900
+Payment successful via CARD
+Amount: R19900
 
 ## Design notes
 

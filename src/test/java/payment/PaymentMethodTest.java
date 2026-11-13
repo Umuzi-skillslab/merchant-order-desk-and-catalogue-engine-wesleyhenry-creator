@@ -1,4 +1,4 @@
-package domain;
+package payment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

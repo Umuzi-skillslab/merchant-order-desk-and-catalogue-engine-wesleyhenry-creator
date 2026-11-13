@@ -3,6 +3,9 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import payment.PaymentMethod;
+import payment.PaymentProcessor;
+
 
 public class Order {
 
@@ -15,9 +18,9 @@ public class Order {
         this.customer = customer;
         this.items = new ArrayList<>();
     }
-    
+
     public void addItem(Product product, int quantity) {
-       
+
         OrderItem orderItem = new OrderItem(product, quantity);
         items.add(orderItem);
     }
@@ -60,5 +63,8 @@ System.out.println("========================");
     public List<OrderItem> getItems() {
         return items;
     }
-}
 
+    public void checkout(PaymentMethod paymentMethod) {
+        new PaymentProcessor().processPayment(paymentMethod, calculateTotal());
+    }
+}

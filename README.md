@@ -1,132 +1,136 @@
 # PayNest Commerce Kernel
 
+PayNest is a Java-based commerce demo designed for small South African merchants who need a simple way to manage products, customers, orders, and payments in a lightweight application.
+
+The project demonstrates core e-commerce concepts in a clean object-oriented design and serves as a practical example of how an order system can be structured in Java.
+
 ## Overview
 
-PayNest is a lightweight commerce system designed for small South African merchants selling products online and at local markets. This application provides a simple order management flow that allows merchants to:
+This application allows a merchant to:
 
-- Manage products and customers
-- Create orders
-- Add products to orders
-- Calculate order totals
-- Generate a human-readable order summary
+- create and manage products
+- create and store customer details
+- build an order for a customer
+- add products with quantities to the order
+- calculate line totals and the grand total
+- print a clear order summary
+- process payment using different payment methods
 
-The project is implemented using plain Java and follows object-oriented design principles to ensure maintainability and future extensibility.
-
----
+The implementation focuses on maintainability and extensibility while keeping the business logic simple and readable.
 
 ## Features
 
-### Product Management
-- Create products with:
-  - ID
-  - Name
-  - Price (Rand)
+### Product management
+- store product ID, name, and price
+- calculate product totals based on quantity
+- keep pricing logic separate from order logic
 
-### Customer Management
-- Create customers with:
-  - ID
-  - Name
-  - Email Address
+### Customer management
+- create customer accounts with ID, name, and email
+- associate customers with orders
 
-### Order Management
-- Create orders for customers
-- Add products and quantities to orders
-- Calculate line item totals
-- Calculate order grand totals
-- Print order summaries
+### Order management
+- create orders for customers
+- add products to an order with quantities
+- calculate total cost automatically
+- print a formatted summary for checkout
+- validate that quantity values are greater than zero
 
-### Validation
-- Prevent invalid quantities
-- Quantities must be greater than zero
+### Payment handling
+The project includes a payment abstraction and concrete payment methods such as:
+
+- CardPayment
+- EFT payment
+- Wallet payment
+- PayJustNow payment
+
+This makes it easy to extend the checkout flow with new payment options.
 
 ### Testing
-JUnit 5 tests included for:
-- Order total calculation
-- Quantity validation
-- Order service functionality
+JUnit 5 tests cover core behavior, including:
 
----
+- order total calculations
+- quantity validation
+- service-level order operations
+- payment processing logic
 
-## Project Structure
+## Project structure
 
 ```text
-src
-├── main
-│   └── java
-│       ├── app
+src/
+├── main/
+│   └── java/
+│       ├── app/
 │       │   └── PayNestApplication.java
-│       ├── domain
+│       ├── domain/
 │       │   ├── Customer.java
 │       │   ├── Order.java
 │       │   ├── OrderItem.java
 │       │   └── Product.java
-│       └── service
+│       ├── payment/
+│       │   ├── CardPayment.java
+│       │   ├── EFTPayment.java
+│       │   ├── PayJustNowPayment.java
+│       │   ├── PaymentMethod.java
+│       │   ├── PaymentProcessor.java
+│       │   └── WalletPayment.java
+│       └── service/
 │           └── OrderService.java
 │
-└── test
-    └── java
-        ├── domain
-        │   ├── OrderItemValidationTest.java
-        │   └── OrderTest.java
-        └── service
+└── test/
+    └── java/
+        ├── domain/
+        │   ├── OrderTest.java
+        │   └── PaymentMethodTest.java
+        └── service/
             └── OrderServiceTest.java
 ```
 
----
-
-## Technologies Used
+## Tech stack
 
 - Java 21
-- Apache Maven
+- Maven
 - JUnit 5
 
----
+## Prerequisites
 
-## Running the Application
+- Java 21 or newer
+- Maven installed and available on your PATH
 
-### Clone the Repository
+## Getting started
+
+### 1. Clone the repository
 
 ```bash
 git clone <repository-url>
+cd merchant-order-desk-and-catalogue-engine-wesleyhenry-creator
 ```
 
-### Navigate to the Project
-
-```bash
-cd paynest
-```
-
-### Compile the Application
+### 2. Compile the project
 
 ```bash
 mvn clean compile
 ```
 
-### Run the Demo Application
+### 3. Run the application
 
 ```bash
 mvn exec:java
 ```
 
-Alternatively, run the following class directly from your IDE:
+You can also run the main class directly from your IDE:
 
 ```java
 app.PayNestApplication
 ```
 
----
-
-## Running Tests
-
-Execute all tests with:
+## Running tests
 
 ```bash
 mvn test
 ```
 
----
-
-## Example Output
+## Example output
 
 ```text
 ================================
@@ -147,49 +151,19 @@ Grand Total: R19900.00
 ================================
 ```
 
----
+## Design notes
 
-## Design Decisions
+### Why `OrderItem` exists
+`OrderItem` separates the order into individual line entries so each product can track its own quantity and subtotal independently. This keeps the order model cleaner and easier to extend.
 
-### Why OrderItem Exists
-
-The `OrderItem` class represents a single line in an order.
-
-It allows:
-
-- Separation of concerns
-- Independent quantity tracking
-- Individual line total calculations
-
-Without `OrderItem`, the `Order` class would become responsible for too many tasks and would be harder to extend.
-
-### Why Order Owns Its Items
-
-The `Order` class manages its own collection of `OrderItem` objects.
-
-This ensures:
-
-- Consistent total calculations
-- Better encapsulation
-- Easier future enhancements such as discounts, tax calculations, and stock tracking
+### Why `Order` owns its items
+The `Order` class manages the collection of items so totals remain consistent and validation occurs in one place. This is a strong foundation for adding future features such as discounts, VAT logic, and stock management.
 
 ### Extensibility
-
-The current design allows new product fields to be added later without changing checkout logic.
-
-Examples:
-
-- Product description
-- Product category
-- Product SKU
-- Inventory quantity
-
-Since totals are calculated using getters, the checkout process remains unchanged.
-
----
+The design keeps pricing and calculation logic tied to domain objects rather than embedding everything in a single class. That makes it easy to add new fields or checkout features without disrupting the core flow.
 
 ## Author
 
-**Wesley Henry**
+Wesley Henry
 
 IMI Java Trainee

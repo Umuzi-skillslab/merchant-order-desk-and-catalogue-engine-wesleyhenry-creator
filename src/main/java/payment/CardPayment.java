@@ -4,15 +4,11 @@ public class CardPayment implements PaymentMethod {
 
     @Override
     public boolean processPayment(double amount) {
-        if (amount <= 0) {
-            System.out.println("Invalid payment amount: R" + String.format("%.0f", amount));
-            return false;
-        }
-        System.out.println("Processing card payment for R" +
-            String.format("%.0f", amount));
+        System.out.println("Processing Card Payment of R" + String.format("%.2f", amount));
         return true;
     }
-@Override
+
+    @Override
     public String getPaymentType() {
         return "CARD";
     }

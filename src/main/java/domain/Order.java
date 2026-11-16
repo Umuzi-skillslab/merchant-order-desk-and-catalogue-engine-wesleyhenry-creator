@@ -9,9 +9,9 @@ import payment.PaymentProcessor;
 
 public class Order {
 
-    private  int id;
-    private  Customer customer;
-    private  List<OrderItem> items;
+    private final  int id;
+    private final  Customer customer;
+    private final List<OrderItem> items;
 
     public Order(int id, Customer customer) {
         this.id = id;
@@ -42,12 +42,12 @@ System.out.println("========================");
 System.out.println("Order ID: " + id);
 System.out.println("Items:");
  for (OrderItem item : items) {
- System.out.println(" - " + item.getProduct().getName() + " | x" + item.getQuantity() + " | R" + String.format("%.0f", item.calculateTotal()));
+ System.out.println(" - " + item.getProduct().getName() + " | x" + item.getQuantity() + " | R" + String.format("%.2f", item.calculateTotal()));
 }
 
 System.out.println("========================");
 
-System.out.println("Total: R" + String.format("%.0f", calculateTotal()));
+System.out.println("Total: R" + String.format("%.2f", calculateTotal()));
 
 System.out.println("========================");
     }
@@ -64,7 +64,23 @@ System.out.println("========================");
         return items;
     }
 
-    public void checkout(PaymentMethod paymentMethod) {
-        new PaymentProcessor().processPayment(paymentMethod, calculateTotal());
-    }
+    public boolean checkout(PaymentMethod paymentMethod) {
+        double totalAmount = calculateTotal();
+
+        boolean paymentSuccessful = new PaymentProcessor().processPayment(paymentMethod, totalAmount);
+        System.out.println("=========================");
+        if (paymentSuccessful) {
+        System.out.println("Payment successful. Order completed.");
+
+        System.out.println("Order ID: " + id);
+        System.out.println("Payment Method: " + paymentMethod.getPaymentType());
+        System.out.println("Total Amount Paid: R" + String.format("%.2f", totalAmount));
+        System.out.println("=========================");
+
+        } else {
+            System.out.println("Payment failed. Please try again!");
+
+        }
+        return paymentSuccessful;
+}
 }

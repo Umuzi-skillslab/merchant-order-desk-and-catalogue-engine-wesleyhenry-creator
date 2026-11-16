@@ -2,8 +2,8 @@ package domain;
 
 public class OrderItem {
 
-    private  Product product;
-    private  int quantity;
+    private final  Product product;
+    private final int quantity;
 
     public OrderItem(Product product, int quantity) {
         if (quantity <= 0) {

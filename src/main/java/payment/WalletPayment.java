@@ -2,14 +2,9 @@ package payment;
 
 public class WalletPayment implements PaymentMethod {
 
-    @Override
+     @Override
     public boolean processPayment(double amount) {
-        if (amount <= 0) {
-            System.out.println("Invalid payment amount: R" + String.format("%.0f", amount));
-            return false;
-        }
-    System.out.println("Processing Wallet payment for R" +
-            String.format("%.0f", amount));
+        System.out.println("Processing Wallet payment of R" + String.format("%.2f", amount));
         return true;
     }
 

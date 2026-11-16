@@ -3,9 +3,9 @@ package domain;
 
 public class Customer {
 
-    private  int id;
-    private  String name;
-    private  String email;
+    private final int id;
+    private final String name;
+    private final String email;
 
     public Customer(int id, String name, String email) {
         this.id = id;

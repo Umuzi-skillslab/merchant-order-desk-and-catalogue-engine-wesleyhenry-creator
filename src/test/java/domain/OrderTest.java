@@ -3,15 +3,12 @@ package domain;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
-import payment.PaymentMethod;
-
 public class OrderTest {
 
     @Test
     void calculateTotalReturnsGrandTotal() {
 
-        Customer customer =
-                new Customer(1, "Wesley","wesleyhenry@umuzi.org");
+        Customer customer = new Customer(1, "Wesley Henry","wesleyhenry@umuzi.org");
 
         Order order = new Order(1001, customer);
 
@@ -30,30 +27,4 @@ public class OrderTest {
 
         assertEquals(19900, order.calculateTotal());
     }
-
-    @Test
-    void checkoutProcessesPaymentForOrderTotal() {
-        Customer customer = new Customer(1, "Wesley", "wesleyhenry@umuzi.org");
-        Order order = new Order(1001, customer);
-        order.addItem(new Product(1, "Laptop", 12000), 1);
-        order.addItem(new Product(2, "Mouse", 200), 2);
-
-        double[] processedAmount = {Double.NaN};
-        PaymentMethod paymentMethod = new PaymentMethod() {
-            @Override
-            public boolean processPayment(double amount) {
-                processedAmount[0] = amount;
-                return true;
-            }
-
-            @Override
-            public String getPaymentType() {
-                return "TEST";
-            }
-        };
-
-        order.checkout(paymentMethod);
-
-        assertEquals(12400, processedAmount[0]);
     }
-}

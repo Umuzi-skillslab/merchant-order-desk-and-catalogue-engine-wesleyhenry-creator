@@ -7,7 +7,7 @@ public class PaymentProcessor {
 
         if (success) {
             System.out.println("Payment successful via " + method.getPaymentType());
-            System.out.println("Amount: R" + String.format("%.0f", amount));
+            System.out.println("Amount: R" + String.format("%.2f", amount));
 
         } else {
             System.out.println("Payment failed via " + method.getPaymentType());

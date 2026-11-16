@@ -4,17 +4,12 @@ public class PayJustNowPayment implements PaymentMethod {
 
     @Override
     public boolean processPayment(double amount) {
-        if (amount <= 0) {
-            System.out.println("Invalid payment amount: R" + String.format("%.0f", amount));
-            return false;
-        }
-        System.out.println("Processing PayJustNow payment for R" +
-            String.format("%.0f", amount));
+        System.out.println("Processing PayJustNow payment of R" + String.format("%.2f", amount));
         return true;
     }
 
     @Override
     public String getPaymentType() {
-        return "PayJustNow";
+        return "Pay Just Now";
     }
 }

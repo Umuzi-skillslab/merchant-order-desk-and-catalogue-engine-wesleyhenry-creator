@@ -8,7 +8,7 @@ public class OrderTest {
     @Test
     void calculateTotalReturnsGrandTotal() {
 
-        Customer customer = new Customer(1, "Wesley Henry","wesleyhenry@umuzi.org");
+        Customer customer = new Customer(1001, "Wesley Henry","wesleyhenry@umuzi.org");
 
         Order order = new Order(1001, customer);
 

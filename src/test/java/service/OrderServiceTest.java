@@ -13,7 +13,7 @@ public class OrderServiceTest {
     void createOrderAddItemsAndCheckout() {
         OrderService orderService = new OrderService();
 
-        Customer customer = new Customer(1, "Wesley Henry", "wesleyhenry@umuzi.org");
+        Customer customer = new Customer(1001, "Wesley Henry", "wesleyhenry@umuzi.org");
         Order order = orderService.createOrder(1, customer);
 
         Product laptop = new Product(1, "Laptop", 12000);

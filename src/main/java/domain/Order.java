@@ -70,7 +70,8 @@ System.out.println("========================");
         boolean paymentSuccessful = new PaymentProcessor().processPayment(paymentMethod, totalAmount);
         System.out.println("=========================");
         if (paymentSuccessful) {
-        System.out.println("Payment successful. Order completed.");
+        System.out.println("Payment successful.");
+        System.out.println("Order Completed!");
 
         System.out.println("Order ID: " + id);
         System.out.println("Payment Method: " + paymentMethod.getPaymentType());

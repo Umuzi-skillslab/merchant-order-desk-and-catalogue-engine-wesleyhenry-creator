@@ -150,7 +150,6 @@ The payment object is assigned to a `PaymentMethod` reference, demonstrating pol
 ## Example output
 
 ```text
-========================
 Order summary
 ========================
 Customer: Wesley Henry
@@ -158,9 +157,9 @@ Email: wesleyhenry@umuzi.org
 ========================
 Order ID: 1
 Items:
-- Laptop | x1 | R12000,00
-- Mouse | x2 | R400,00
-- Headphones | x5 | R7500,00
+ - Laptop | x1 | R12000,00
+ - Mouse | x2 | R400,00
+ - Headphones | x5 | R7500,00
 ========================
 Total: R19900,00
 ========================
@@ -168,7 +167,8 @@ Processing Card Payment of R19900,00
 Payment successful via CARD
 Amount: R19900,00
 =========================
-Payment successful. Order completed.
+Payment successful.
+Order Completed!
 Order ID: 1
 Payment Method: CARD
 Total Amount Paid: R19900,00

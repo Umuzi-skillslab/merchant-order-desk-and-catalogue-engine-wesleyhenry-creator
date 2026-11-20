@@ -1,10 +1,12 @@
+
 package payment;
 
-public class EftPayment implements PaymentMethod {
+public class EftPayment extends PaymentMethod {
 
     @Override
-    public boolean processPayment(double amount) {
-        System.out.println("Processing EFT payment of R" + String.format("%.2f", amount));
+    protected boolean doProcess(double amount) {
+        System.out.println("Processing EFT payment of R"
+                + String.format("%.2f", amount));
         return true;
     }
 

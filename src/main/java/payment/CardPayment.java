@@ -1,10 +1,12 @@
+
 package payment;
 
-public class CardPayment implements PaymentMethod {
+public class CardPayment extends PaymentMethod {
 
     @Override
-    public boolean processPayment(double amount) {
-        System.out.println("Processing Card Payment of R" + String.format("%.2f", amount));
+    protected boolean doProcess(double amount) {
+        System.out.println("Processing Card Payment of R"
+                + String.format("%.2f", amount));
         return true;
     }
 

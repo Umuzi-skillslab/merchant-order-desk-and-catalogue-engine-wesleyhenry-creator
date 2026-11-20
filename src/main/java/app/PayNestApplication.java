@@ -15,12 +15,13 @@ public class PayNestApplication {
         Product headphones = new Product(3, "Headphones", 1500);
 
         Customer customer = new Customer(
-            1,
-            "Wesley Henry",
-            "wesleyhenry@umuzi.org"
+                1,
+                "Wesley Henry",
+                "wesleyhenry@umuzi.org"
         );
 
         Order order = new Order(1, customer);
+
         order.addItem(laptop, 1);
         order.addItem(mouse, 2);
         order.addItem(headphones, 5);
@@ -28,7 +29,7 @@ public class PayNestApplication {
         order.printSummary();
 
         PaymentMethod paymentMethod = new CardPayment();
-        order.checkout(paymentMethod);
 
+        order.checkout(paymentMethod);
     }
 }

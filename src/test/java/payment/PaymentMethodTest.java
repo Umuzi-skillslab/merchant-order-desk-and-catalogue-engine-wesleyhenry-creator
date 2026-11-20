@@ -1,3 +1,4 @@
+
 package payment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,7 +11,8 @@ import domain.Order;
 import domain.Product;
 
 public class PaymentMethodTest {
-      @Test
+
+    @Test
     void testCardPayment() {
 
         Order order = createOrder();
@@ -46,8 +48,11 @@ public class PaymentMethodTest {
 
         order.checkout(paymentMethod);
 
-        assertEquals(order.calculateTotal(),
-                paymentMethod.getReceivedAmount(), 0.001);
+        assertEquals(
+                order.calculateTotal(),
+                paymentMethod.getReceivedAmount(),
+                0.001
+        );
     }
 
     @Test
@@ -81,13 +86,12 @@ public class PaymentMethodTest {
         return order;
     }
 
-    private static class RecordingPaymentMethod
-            implements PaymentMethod {
+    private final class RecordingPaymentMethod extends PaymentMethod {
 
         private double receivedAmount;
 
         @Override
-        public boolean processPayment(double amount) {
+        protected boolean doProcess(double amount) {
 
             receivedAmount = amount;
 
@@ -104,11 +108,10 @@ public class PaymentMethodTest {
         }
     }
 
-    private static class FailedPaymentMethod
-            implements PaymentMethod {
+    private static class FailedPaymentMethod extends PaymentMethod {
 
         @Override
-        public boolean processPayment(double amount) {
+        protected boolean doProcess(double amount) {
             return false;
         }
 
